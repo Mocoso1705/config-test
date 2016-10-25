@@ -1,0 +1,268 @@
+Mongo:
+  host: localhost
+  port: 27017
+  db: iamatdev
+
+# example for replica sets:
+#
+# Mongo:
+#   db: iamatdev
+#   replSet:
+#     - host: localhost
+#       port: 27017
+#     - host: localhost
+#       port: 27018
+#     - host: localhost
+#       port: 27019
+
+# example for non-standart haredis config
+#
+# Redis:
+#   server:
+#     host: localhost
+#     port: 6379
+
+# Log:
+#   File:
+#     filename: nodeserver.log
+#     maxsize: 10000000
+#     maxFiles: 10
+#     level: info
+#     pretty: false
+#   Console:
+#     level: warn
+#   Papertrail:
+#     level: level
+#     host: hostname
+#     port: port number
+
+Log:
+  Console:
+    level: verbose
+
+Socket:
+  loglevel: 1 # warn
+
+Server:
+  protocol: http
+  domain: iamat.com
+  port: 80
+  Static:
+    webroot: "/webroot"
+    favicon: "/webroot/favicon.ico"
+    maxAge: 3600000 # 1 hour
+  Cookie:
+    secret: "Please, change me!"
+    key: "express.sid"
+    maxAge: 1209600000 # 2 weeks
+  Geo:
+    localLimit: 10
+    maxDist: 0.45 # Around 50km in radians
+  Http:
+    jsonMaxAge: 1
+  Cache:
+    uaWhitelist: 60000 # 1 min
+    ranking: 30000 # 30 sec
+    atcodeTimeout: 60000 # 1 min
+    emailAuthListTimeout: 600000 # 10 min
+  pollsInterval: 400 #
+  jwt:
+    secretKey: "secret"
+
+Observer:
+  port: 3000
+
+Atcode:
+  sizeOfNewsChunk: 20
+  validString: "[0-9a-zA-Z-]+"
+  validStrings: "[0-9a-zA-Z,-]+"
+
+MediaDownloader:
+  workers: 3
+
+Media:
+  workers: 3
+
+Bully:
+  timeout: 1000
+
+RedisLock:
+  ttl: 60 # 60 seconds
+
+Push:
+  aps:
+    defaultBundle: "com.iamat.ios-client"
+    path: "/absolute/path/to/cert/directory/"
+    gateway: "gateway.push.apple.com"
+    port: 2195
+  gcm:
+    sender: "senderkey"
+    timeToLive: 0
+    retries: 4
+
+Polls:
+  sendToId: "all"
+  cache: 1000
+  winnersLimit: 50
+
+Ranking:
+  size: 10
+  usersHashTableSize: 1000
+
+Polls2:
+  cache: 1000
+  winnersLimit: 50
+  closeWait: 5000
+  postProcessAmount: 1000
+  rememberThreshold: 300000 # 5 min
+  queueWait: 3000 # 3 seconds
+
+Console:
+  forceHTTPS: false
+
+History:
+  Cache:
+    idCount: 100
+    idTimeout: 600000
+  limit: 50
+
+Limits:
+  maxUsersReq: 20
+
+ExternalBigs:
+  SFTP:
+    timeout: 600000 # 10 min
+    readyTimeout: 30000 # 30 sec
+
+FeedCron:
+  interval:
+    usersConnected: 300 # 5 min
+    noUserConnected: 1800 # 30 min
+  feedItems: 50
+
+Big:
+  heartbeat:
+    interval: 2000
+    timeout: 2000
+    failThreshold: 2
+
+Content:
+  maxTextLen: 160
+
+ConnectedUsers:
+  redis:
+    expires: 300 # 5 min
+
+Points:
+  pipeline:
+    cache: "5 min"
+
+Teams:
+  cache: 1800000 # 30 minutes
+
+NewRelic:
+  licenseKey: "insertKeyHere"
+  level: "info"
+
+GCE:
+  monitoring:
+    interval: 30000 # 30 seconds
+
+Commands:
+  resendEvents:
+    - sh_featured_facebook
+    - sh_featured_twitter
+    - sh_featured_instagram
+    - sh_action
+    - console_broadcast
+    - game_init
+    - game_stop
+    - playlist_stop
+    - poll_freeze
+    - poll_hide_details
+    - poll_show_details
+    - poll_sh_voters
+    - sh_ad_img_adserver
+    - sh_ad_img_app_path
+    - sh_ad_img_link
+    - sh_ad_img_store
+    - sh_agenda
+    - sh_card
+    - sh_card_fans
+    - sh_card_match
+    - sh_card_player
+    - sh_card_substitution
+    - sh_card_team
+    - sh_chat
+    - sh_color
+    - sh_combined_tl
+    - sh_fbtl
+    - sh_featured_item
+    - sh_game
+    - sh_home
+    - sh_html
+    - sh_id
+    - sh_img
+    - sh_map
+    - sh_media
+    - sh_null
+    - sh_people
+    - sh_plan
+    - sh_playlist
+    - sh_post
+    - sh_section
+    - sh_static_results
+    - sh_tl
+    - sh_tw
+    - sh_user_text
+    - start_game
+
+  resendMCEvents:
+    - update_timer
+
+  histWhitelist:
+    - sh_featured_facebook
+    - sh_featured_twitter
+    - sh_featured_instagram
+    - sh_action
+    - sh_ad_img_adserver
+    - sh_ad_img_app_path
+    - sh_ad_img_link
+    - sh_ad_img_store
+    - sh_card
+    - sh_card_fans
+    - sh_card_match
+    - sh_card_player
+    - sh_card_substitution
+    - sh_card_team
+    - sh_featured_item
+    - sh_html
+    - sh_img
+    - sh_media
+    - sh_null
+    - sh_post
+    - sh_static_results
+
+S3:
+  region: "us-standard"
+  apiKey: "AWS API key"
+  secretKey: "AWS secret key"
+
+Media:
+  sizes:
+    thumb:
+      size: 100
+      s3: false
+    small:
+      size: 320
+      s3: true
+    medium:
+      size: 640
+      s3: true
+    bigscreen:
+      size: "1280x720"
+      s3: true
+  S3:
+    mediaPath: "/media/"
+    bucket: "example.com"
+
