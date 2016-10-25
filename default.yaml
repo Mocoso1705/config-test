@@ -3,7 +3,7 @@ Mongo:
   port: 27017
   db: iamatdev
 
-# example for replica sets:
+#LALALAL example for replica sets:
 #
 # Mongo:
 #   db: iamatdev
@@ -265,4 +265,3 @@ Media:
   S3:
     mediaPath: "/media/"
     bucket: "example.com"
- 
